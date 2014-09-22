@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+- 2.1.2
+- 1.9.3
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: dtdiJOphLoEn4LnikDAlXBHBmNLs3jtUNbE/Z8u82aQgT620R2etyAQBqcn0ZoFwJj2OaW5Jw36dnIIfkH1H1Jp+jHF8nXoTu5KXifr6D27evv9Cb08jfmOhEpsOZP1fKzx8omL5VbIlK4+mqPKDwpu8jrFX1Dpbz7l6BrHoL7A=
+  app: frozen-plains-2610
+  on:
+    repo: utah-KT/rails_enpit
+    branch: travis
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
